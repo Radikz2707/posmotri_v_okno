@@ -5,10 +5,6 @@
   padding: 0;
   margin: 0;
 }
-*:focus-visible {
-  /* Без этой строки, у меня неправильно отображаются обводка блока content__video-card */
-  outline: 1px solid #fff; 
-}
 
 html {
   block-size: 100%;
@@ -57,19 +53,26 @@ ol {
   gap: 30px;
   overflow: hidden;
 }
+
 .result {
   flex: 0 1 711px;
   display: flex;
   flex-flow: column nowrap;
   gap: 16px;
 }
+
 .result__video-container {
-  inline-size: 711px;
+  block-size: 386px;
   position: relative;
 }
+
 .result__video {
   inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
 }
+
 .search-form {
   inline-size: 100%;
   block-size: 54px;
@@ -77,6 +80,7 @@ ol {
   justify-content: space-between;
   align-items: flex-end;
 }
+
 .search-form__fieldset {
   color: #fff;
   font-size: 18px;
@@ -99,11 +103,13 @@ ol {
   font-weight: 400;
 }
 
+.search-form__label {
+  cursor: pointer;
+}
 .search-form__label:has(:focus-visible) {
-  appearance: none;
-  border: 1px solid #fff;
   outline: 1px solid #fff;
-  outline-offset: 1px;
+  border: 1px solid #fff;
+  outline-offset: 2px;
 }
 .search-form__label:hover {
   text-decoration: underline;
@@ -120,6 +126,8 @@ ol {
 .visually-hidden {
   position: absolute;
   inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   overflow: hidden;
@@ -127,7 +135,6 @@ ol {
 
 .search-form__textfield {
   margin-block-start: 6px;
-  padding-block-start: 5px;
   color: #fff;
   font-family: inherit;
   font-size: 18px;
@@ -140,29 +147,31 @@ ol {
   border-block-end: 1px solid #fff;
   background-color: transparent;
   appearance: none;
-  cursor: pointer;
 }
-.search-form__textfield:active {
-  box-sizing: border-box;
-  border: 1px solid #fff;
-}
+
 .search-form__textfield:hover {
   border: none;
   border-block-start: 1px solid #fff;
   border-block-end: 1px solid #fff;
 }
-.search-form__textfield:focus {
-  border: none;
-  outline: none;
+
+.search-form__textfield:active {
+  border: 1px solid #fff;
 }
 
-input::placeholder {
+.search-form__textfield:focus {
+  appearance: none;
+  border: none;
+  outline: none;
+  outline-offset: 0;
+}
+
+.search-form__textfield::placeholder {
   padding-inline-start: 2px;
   color: rgba(255, 255, 255, 0.7);
   font-family: inherit;
-  font-size: 18px;
+  font-size: inherit;
   font-weight: inherit;
-  line-height: 100%;
 }
 .search-form__checkbox-list {
   margin-block-start: 4px;
@@ -211,20 +220,21 @@ input::placeholder {
   background-color: transparent;
   cursor: pointer;
 }
-.button:active {
-  background-color: #545050;
-}
+
 .button:hover {
   text-decoration: underline;
 }
-.button:focus {
-  border: none;
-  outline: none;
+
+.button:active {
+  outline: 1px solid #fff;
+  border: 1px solid #fff;
+  background-color: #545050;
 }
+
 .button:focus-visible {
   border: 1px solid #fff;
   outline: 1px solid #fff;
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 .search-form__submit-button {
   inline-size: 194px;
@@ -238,9 +248,7 @@ input::placeholder {
   align-items: flex-start;
   gap: 20px;
 }
-.content__details img {
-  max-inline-size: 100%;
-}
+
 .title {
   color: #fff;
   font-family: Oswald, sans-serif;
@@ -257,10 +265,12 @@ input::placeholder {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-  gap: 30px;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.content__list-item:not(:last-of-type)  {
+  margin-block-end: 30px;
 }
 .content__card-link_current {
   background-color: #545050;
@@ -287,13 +297,14 @@ input::placeholder {
   text-decoration-color: #fff;
 }
 .content__video-card:focus-visible {
+  appearance: none;
   outline: 1px solid #fff;
   border: 1px solid #fff;
 }
 .content__video-card-description-container {
   inline-size: 200px;
   block-size: 100%;
-  flex: 0 1 auto;
+  flex: 1 1 200px;
   text-align: left;
 }
 
@@ -303,15 +314,14 @@ input::placeholder {
   margin: 2px;
 }
 .content__video-card-title {
-  padding: 0;
   color: #fff;
   font-family: Oswald, sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 700;
-  line-height: 100%;
   text-transform: uppercase;
 }
+
 .content__video-card-description {
   color: #fff;
   font-family: Fira Sans Condensed;
@@ -322,10 +332,12 @@ input::placeholder {
 }
 .content__video-card-thumbnail {
   inline-size: 194px;
+  block-size: 103px;
   flex: 0 0 auto;
 }
 .content__video-card img {
-  max-inline-size: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .more-button {
