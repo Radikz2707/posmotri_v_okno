@@ -269,7 +269,7 @@ ol {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.content__list-item:not(:last-of-type)  {
+.content__list-item:not(:last-of-type) {
   margin-block-end: 30px;
 }
 .content__card-link_current {
@@ -324,7 +324,7 @@ ol {
 
 .content__video-card-description {
   color: #fff;
-  font-family: Fira Sans Condensed;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
